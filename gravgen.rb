@@ -56,6 +56,10 @@
 #    # Create random 512x512 monsterid.
 #    gravgen.rb -s 512 -t monsterid /tmp/monsterid.png
 #
+#    # Run a Bash 4.x one-liner to generate 10 random identicons so you
+#    # can pick the one you like best.
+#    for x in {1..10}; do gravgen.rb; done
+#
 #    # Use email address encoded into the filename of a random image as
 #    # the basis for a resized copy.
 #    gravgen.rb --size 32 --email $(
