@@ -1,0 +1,86 @@
+== Name
+   gravgen.rb
+
+== Version
+   $Id$
+
+== Purpose
+   Use the gravtar.com public API to retrieve or generate avatars.
+
+== Features
+   * Works as both a library and as a standalone executable.
+   * Works out of the box. No programming required!
+   * Does NOT require rubygems, unless you want to run the included
+     rake tasks or rspec tests. Neither is necessary for routine
+     operation.
+   * Self-documenting through the magic of RDoc::usage.
+
+== Usage
+   gravgen.rb [OPTIONS] [FILENAME]
+
+   --help, -h:
+       Show complete documentation.
+   --license, -l:
+       Display license.
+   --usage, -u:
+       Show program options.
+   --version, -v:
+       Display this program's version information.
+
+   --email <email_address>, -e <email_address>:
+       Email address to hash for the avatar.
+   --filename <string>, -f <string>:
+       Output filename for avatar.
+   --format <valid_format_code>, -t <valid_format_code>:
+       Valid code for an avatar format. Defaults to 'identicon.'
+   --size <integer>, -s <integer>
+       Valid image size. Defaults to '80.'
+
+== Examples
+   # Create a random 80x80 avatar, display its introspected values,
+   # and store it to disk.
+   #
+   # HINT: reuse the value of @email if you want to recreate a
+   # particular random avatar at a different size later on!
+   gravgen.rb
+
+   # Save identicon for email address foo@example.com to a foo.png
+   # file.
+   gravgen.rb -e foo@example.com foo.png
+
+   # Create wavatar for bar@example.com on stdout.
+   gravgen.rb -e bar@example.com -f- > /tmp/wavatar.png
+
+   # Create random 512x512 monsterid.
+   gravgen.rb -s 512 -t monsterid /tmp/monsterid.png
+
+   # Use email address encoded into the filename of a random image as
+   # the basis for a resized copy.
+   gravgen.rb --size 32 --email $(
+     ls avatar_31765_d0d632d0-aecb-4f75-badf-0a9b8d63c891.png |
+     cut -d- -f2- |
+     cut -d. -f1
+   )
+
+== Errorlevels
+   0 = Success
+   1 = Failure
+   99 = Help/Usage
+
+== Copyright:
+   Copyright 2010 Todd A. Jacobs
+   All Rights Reserved
+
+== License
+   Released under the GNU General Public License (GPL)
+   http://www.gnu.org/copyleft/gpl.html
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License as
+   published by the Free Software Foundation; either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   General Public License for more details.
