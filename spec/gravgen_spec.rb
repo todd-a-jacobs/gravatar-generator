@@ -8,7 +8,7 @@ describe 'Avatar' do
     it 'should find uuidgen in path' do
      @avatar.send(:uuidgen_in_path?).should be_true
     end
-    
+
     it 'should use a uuid when no email is provided' do
       @avatar.instance_variable_get(:@email).should_not be_nil
     end
@@ -19,7 +19,7 @@ describe 'Avatar' do
       @avatar.email_hash.should have(32).characters
     end
   end # context 'without arguments'
-  
+
   context 'when instantiated with explicit arguments' do
     it 'should create a valid hash from a known uuid' do
       @avatar = Avatar.new :email => '52854ebf-b9ce-44a1-aa97-aca08bb1820b'

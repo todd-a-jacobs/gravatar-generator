@@ -3,7 +3,7 @@ begin
 
   desc 'Run RSpec tests in standard mode'
   RSpec::Core::RakeTask.new
-  
+
   desc 'Run RSpec tests in fancy mode'
   RSpec::Core::RakeTask.new(:fancy) do |t|
     t.rspec_opts = ["--color", "--format=doc"]
