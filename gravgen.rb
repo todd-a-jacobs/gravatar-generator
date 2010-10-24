@@ -151,8 +151,7 @@ class Avatar
 
   # Check path for uuidgen binary. Returns true if found.
   def uuidgen_in_path?
-    `which uuidgen`
-    $?.exitstatus == 0 ? true : false
+    File.exists? `which uuidgen`.strip
   end
 
   # Boolean: If attribute @type is listed in Avatar::TYPES, returns
