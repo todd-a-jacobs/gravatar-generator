@@ -97,6 +97,7 @@ require 'ostruct'
 require 'getoptlong'
 require 'rdoc/usage'
 require 'digest/md5'
+require 'open-uri'
 
 # Provides an encapsulated object for retrieving or generating an avatar
 # using the gravatar API.
@@ -107,6 +108,7 @@ class Avatar
   EXTENSIONS = %w[png jpg]
   MIN_SIZE_IN_PX = 1
   MAX_SIZE_IN_PX = 512
+  UUID_WEB_URL = 'http://uuids.codegnome.com/uuid'
 
   # Instantiate a new avatar object with zero or more options:
   #  * :email => String
@@ -116,17 +118,22 @@ class Avatar
     @email = options[:email] || nil
     @type  = options[:type]  || TYPES.first
     @size  = options[:size]  || 80
+    @email = get_uuid if @email.nil?
+    @email_hash = Digest::MD5.hexdigest @email.strip.downcase
     sanity_check
-    @email = `uuidgen`.chomp.strip if @email.nil?
-    @email_hash = Digest::MD5.hexdigest @email.chomp.strip.downcase
+  end
+
+  # Get a Type 4 random UUID from uuigen (if available) or from a web
+  # resource.
+  def get_uuid
+    uuidgen_in_path? ?
+      %x(uuidgen).strip :
+      open(UUID_WEB_URL).read
   end
 
   # Perform basic sanity check of the instantiated object. Raises
   # exceptions if the object's values don't conform to requirements.
   def sanity_check
-    if @email.nil?
-      raise 'uuidgen missing from path' unless uuidgen_in_path?
-    end
     if @size < MIN_SIZE_IN_PX or @size > MAX_SIZE_IN_PX
       raise ArgumentError "invalid size: #{@size}"
     end
