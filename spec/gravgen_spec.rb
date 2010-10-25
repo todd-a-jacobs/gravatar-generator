@@ -56,6 +56,15 @@ describe 'Avatar' do
     end
   end # context 'with explicit arguments'
 
+  describe '#get_uuid' do
+    it 'should be a valid Type 4 UUID' do
+      @avatar = Avatar.new
+      uuid = @avatar.get_uuid
+      hex = '[0-9a-f]'
+      uuid.should match /#{hex}{8}-#{hex}{4}-4#{hex}{3}-#{hex}{4}-#{hex}{12}/
+    end
+  end
+
   describe '#fetch' do
     it 'should not fetch the gravatar default image' do
       @avatar = Avatar.new
