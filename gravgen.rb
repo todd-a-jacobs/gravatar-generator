@@ -74,7 +74,7 @@
 #    99 = Help/Usage
 #
 # == Copyright:
-#    Copyright 2010 Todd A. Jacobs
+#    Copyright 2010, 2012 Todd A. Jacobs
 #    All Rights Reserved
 #
 # == License
