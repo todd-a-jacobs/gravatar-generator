@@ -92,7 +92,7 @@ describe 'Avatar' do
     end
 
     it 'should create a valid wavatar image' do
-      calc_digest('wavatar').should == '812c451340234731b4a6b2514a3d96cd'
+      calc_digest('wavatar').should == '5094baaf4301039acbff841bd23cf5b0'
     end
 
     it 'should create a valid retro image' do
