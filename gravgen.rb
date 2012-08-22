@@ -107,7 +107,7 @@ class Avatar
   TYPES = %w[identicon monsterid wavatar retro]
   EXTENSIONS = %w[png jpg]
   MIN_SIZE_IN_PX = 1
-  MAX_SIZE_IN_PX = 512
+  MAX_SIZE_IN_PX = 2048
   UUID_WEB_URL = 'http://uuids.codegnome.com/uuid'
 
   # Instantiate a new avatar object with zero or more options:
